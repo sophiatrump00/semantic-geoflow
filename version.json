@@ -1,0 +1,17 @@
+{
+  "version": "2.0.4-semantic-cache",
+  "release_date": "2026-06-15",
+  "release_type": "enhancement",
+  "archive_url": "https://github.com/yaojingang/GEOFlow/archive/refs/heads/main.zip",
+  "payload": {
+    "title_zh": "GEOFlow v2.0.4 - 语义缓存增强版",
+    "title_en": "GEOFlow v2.0.4 - Enhanced with Semantic Cache",
+    "summary_zh": "基于 GEOFlow 2.0.4，新增 AI 语义缓存功能：通过 prompt embedding 向量相似度检索，让重复或相似的生成请求直接复用历史结果，降低 30-50% token 消耗，命中响应时间从秒级降至毫秒级。包含完整的后台管理界面、TTL+LRU 失效策略和优雅降级机制。",
+    "summary_en": "Based on GEOFlow 2.0.4 with a new AI semantic cache feature: reuse previous generations via prompt embedding similarity search, cutting 30-50% token cost and reducing hit latency from seconds to milliseconds. Includes full admin UI, TTL+LRU eviction, and graceful degradation.",
+    "upgrade_tip_zh": "本版本为二次开发增强版，非官方发布。新增功能详见 CHANGELOG.md。需要 PostgreSQL + pgvector 扩展支持向量检索功能。",
+    "upgrade_tip_en": "This is an unofficial enhanced fork. See CHANGELOG.md for new features. Requires PostgreSQL + pgvector extension for vector similarity search.",
+    "release_url": "https://github.com/yaojingang/GEOFlow",
+    "changelog_url_zh": "CHANGELOG.md",
+    "changelog_url_en": "CHANGELOG.md"
+  }
+}
