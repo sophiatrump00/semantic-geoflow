@@ -75,6 +75,10 @@ Route::prefix($adminPrefix)->name('admin.')->middleware(['admin.locale'])->group
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics');
         Route::get('commerce-ops', [CommerceOpsController::class, 'index'])->name('commerce-ops.index');
+        Route::get('commerce-ops/sample-csv', [CommerceOpsController::class, 'sampleCsv'])->name('commerce-ops.sample-csv');
+        Route::post('commerce-ops/import-csv', [CommerceOpsController::class, 'importCsv'])->name('commerce-ops.import-csv');
+        Route::post('commerce-ops/products/{productId}/knowledge', [CommerceOpsController::class, 'createKnowledge'])->name('commerce-ops.products.knowledge');
+        Route::post('commerce-ops/products/{productId}/draft', [CommerceOpsController::class, 'generateDraft'])->name('commerce-ops.products.draft');
 
         Route::prefix('system-updates')->name('system-updates.')->group(function () {
             Route::get('/', [SystemUpdateController::class, 'index'])->name('index');
