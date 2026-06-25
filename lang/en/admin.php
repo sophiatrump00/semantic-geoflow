@@ -64,6 +64,7 @@ return [
     'nav' => [
         'dashboard' => 'Dashboard',
         'analytics' => 'Analytics',
+        'commerce_ops' => 'ERP Ops',
         'tasks' => 'Tasks',
         'distribution' => 'Distribution',
         'articles' => 'Articles',
@@ -77,6 +78,9 @@ return [
         'admin_management' => 'User Management',
         'activity_logs' => 'Activity Logs',
         'api_tokens' => 'API Tokens',
+    ],
+    'commerce_ops' => [
+        'page_title' => 'ERP / Shopify Operations',
     ],
     'header' => [
         'welcome' => 'Welcome, :name',

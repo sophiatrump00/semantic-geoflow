@@ -64,6 +64,7 @@ return [
     'nav' => [
         'dashboard' => '首页',
         'analytics' => '数据分析',
+        'commerce_ops' => 'ERP Ops',
         'tasks' => '任务管理',
         'distribution' => '分发管理',
         'articles' => '文章管理',
@@ -77,6 +78,9 @@ return [
         'admin_management' => '用户管理',
         'activity_logs' => '操作日志',
         'api_tokens' => 'API Tokens',
+    ],
+    'commerce_ops' => [
+        'page_title' => 'ERP / Shopify Ops',
     ],
     'header' => [
         'welcome' => '欢迎，:name',

@@ -84,8 +84,8 @@
                             <li>• Multilingual product copy: EN / ZH / ES</li>
                             <li>• Support knowledge and content gap analysis</li>
                         </ul>
-                        <a href="{{ route('admin.knowledge-bases.index') }}" class="mt-7 inline-flex rounded-full bg-violet-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-violet-200">
-                            Build Commerce Knowledge
+                        <a href="{{ route('admin.commerce-ops.index') }}" class="mt-7 inline-flex rounded-full bg-violet-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-violet-200">
+                            Enter ERP / Shopify Ops
                         </a>
                     </section>
                 </div>

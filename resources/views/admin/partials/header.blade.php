@@ -21,6 +21,7 @@
     $menu = [
         'dashboard' => ['route' => 'admin.dashboard', 'name' => __('admin.nav.dashboard')],
         'analytics' => ['route' => 'admin.analytics', 'name' => __('admin.nav.analytics')],
+        'commerce_ops' => ['route' => 'admin.commerce-ops.index', 'name' => __('admin.nav.commerce_ops')],
         'tasks' => ['route' => 'admin.tasks.index', 'name' => __('admin.nav.tasks')],
         'distribution' => ['route' => 'admin.distribution.index', 'name' => __('admin.nav.distribution')],
         'articles' => ['route' => 'admin.articles.index', 'name' => __('admin.nav.articles')],
@@ -33,6 +34,7 @@
     }
     $subMap = [
         'admin.analytics' => 'analytics',
+        'admin.commerce-ops.index' => 'commerce_ops',
         'admin.system-updates.index' => 'dashboard',
         'admin.system-updates.check' => 'dashboard',
         'admin.system-updates.plan' => 'dashboard',
