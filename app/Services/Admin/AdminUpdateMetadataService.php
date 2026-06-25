@@ -108,12 +108,12 @@ class AdminUpdateMetadataService
         return [
             'state' => $state,
             'links' => [
-                'github' => 'https://github.com/yaojingang/GEOFlow',
+                'github' => 'https://github.com/sophiatrump00/semantic-geoflow',
                 'changelog' => [
-                    'zh-CN' => (string) ($payload['changelog_url_zh'] ?? 'https://github.com/yaojingang/GEOFlow/blob/main/docs/CHANGELOG.md'),
-                    'en' => (string) ($payload['changelog_url_en'] ?? 'https://github.com/yaojingang/GEOFlow/blob/main/docs/CHANGELOG_en.md'),
+                    'zh-CN' => (string) ($payload['changelog_url_zh'] ?? 'https://github.com/sophiatrump00/semantic-geoflow'),
+                    'en' => (string) ($payload['changelog_url_en'] ?? 'https://github.com/sophiatrump00/semantic-geoflow'),
                 ],
-                'release' => (string) ($payload['release_url'] ?? 'https://github.com/yaojingang/GEOFlow'),
+                'release' => (string) ($payload['release_url'] ?? 'https://github.com/sophiatrump00/semantic-geoflow'),
             ],
         ];
     }

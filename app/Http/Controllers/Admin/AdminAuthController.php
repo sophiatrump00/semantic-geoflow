@@ -101,7 +101,7 @@ class AdminAuthController extends Controller
     public function switchLocale(Request $request, string $locale): RedirectResponse
     {
         if (! AdminWeb::isSupportedLocale($locale)) {
-            $locale = 'zh_CN';
+            $locale = 'en';
         }
         $request->session()->put('locale', $locale);
         app()->setLocale($locale);

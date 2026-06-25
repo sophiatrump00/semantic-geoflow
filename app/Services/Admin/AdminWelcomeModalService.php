@@ -36,11 +36,11 @@ class AdminWelcomeModalService
                 'dismissUrl' => route('admin.welcome.dismiss', [], false),
                 'csrfToken' => csrf_token(),
                 'links' => [
-                    'x' => 'https://x.com/yaojingang',
-                    'github' => 'https://github.com/yaojingang/GEOFlow',
+                    'x' => 'https://github.com/sophiatrump00',
+                    'github' => 'https://github.com/sophiatrump00/semantic-geoflow',
                     'changelog' => [
-                        'zh-CN' => 'https://github.com/yaojingang/GEOFlow/blob/main/docs/CHANGELOG.md',
-                        'en' => 'https://github.com/yaojingang/GEOFlow/blob/main/docs/CHANGELOG_en.md',
+                        'zh-CN' => 'https://github.com/sophiatrump00/semantic-geoflow',
+                        'en' => 'https://github.com/sophiatrump00/semantic-geoflow',
                     ],
                 ],
             ],
