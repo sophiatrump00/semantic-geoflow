@@ -7,7 +7,7 @@ use Psr\Http\Message\RequestInterface;
 final class OutboundHttpProxy
 {
     /**
-     * Build Laravel HTTP client options from GEOFlow proxy config.
+     * Build Laravel HTTP client options from SemanticFlow proxy config.
      *
      * @return array<string, mixed>
      */

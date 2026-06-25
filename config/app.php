@@ -3,7 +3,7 @@
 /**
  * Laravel 应用核心配置（名称、环境、时区、Locale、密钥等）。
  *
- * GEOFlow 业务专用项见 config/geoflow.php。
+ * SemanticFlow business settings live in config/geoflow.php.
  */
 
 return [
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'zh_CN'),
+    'locale' => env('APP_LOCALE', 'en'),
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 

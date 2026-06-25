@@ -14,8 +14,8 @@
         ? ($updatePayload['summary_en'] ?? '')
         : ($updatePayload['summary_zh'] ?? ''));
     $changelogLinks = is_array($updateLinks['changelog'] ?? null) ? $updateLinks['changelog'] : [];
-    $notificationChangelogUrl = (string) ($changelogLinks[$localeForChangelog] ?? $changelogLinks['zh-CN'] ?? 'https://github.com/yaojingang/GEOFlow/blob/main/docs/CHANGELOG.md');
-    $notificationGithubUrl = (string) ($updateLinks['github'] ?? 'https://github.com/yaojingang/GEOFlow');
+    $notificationChangelogUrl = (string) ($changelogLinks[$localeForChangelog] ?? $changelogLinks['zh-CN'] ?? 'https://github.com/sophiatrump00/semantic-geoflow/blob/main/docs/CHANGELOG.md');
+    $notificationGithubUrl = (string) ($updateLinks['github'] ?? 'https://github.com/sophiatrump00/semantic-geoflow');
     $notificationUpdateCenterUrl = $isUpdateCenterEnabled && $isSuperAdmin ? route('admin.system-updates.index', [], false) : '';
     $notificationStatus = (string) ($updateState['status'] ?? 'disabled');
     $menu = [
@@ -110,15 +110,20 @@
         $resolvedActive = $subMap[$routeName];
     }
 @endphp
-<nav class="bg-white shadow-sm border-b">
+<nav class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/95 shadow-lg shadow-slate-950/20 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center gap-3 lg:gap-4 min-w-0">
-            <a href="{{ route('admin.dashboard') }}" class="shrink-0 text-lg sm:text-xl font-semibold text-gray-900">{{ $adminBrandName }}</a>
+            <a href="{{ route('admin.dashboard') }}" class="flex shrink-0 items-center gap-2 text-lg font-semibold text-white">
+                <span class="flex h-9 w-9 items-center justify-center rounded-2xl bg-sky-400 text-slate-950 shadow-sm shadow-sky-400/30">
+                    <i data-lucide="sparkles" class="h-5 w-5"></i>
+                </span>
+                <span>{{ $adminBrandName }}</span>
+            </a>
             <nav class="hidden md:flex flex-1 min-w-0 items-center">
                 <div class="flex w-full min-w-0 items-center gap-3 lg:gap-5 overflow-x-auto overscroll-x-contain py-2 -my-2 [scrollbar-width:thin]">
                     @foreach ($menu as $key => $item)
                         <a href="{{ route($item['route']) }}"
-                           class="@if($resolvedActive === $key) text-blue-600 font-medium @else text-gray-500 hover:text-gray-700 @endif shrink-0 whitespace-nowrap text-[15px] transition-colors duration-200">
+                           class="@if($resolvedActive === $key) bg-white text-slate-950 shadow-sm @else text-slate-300 hover:bg-slate-800 hover:text-white @endif shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200">
                             {{ $item['name'] }}
                         </a>
                     @endforeach
@@ -126,7 +131,7 @@
             </nav>
             <div class="flex shrink-0 items-center gap-2 sm:gap-3 ml-auto">
                 <div class="relative">
-                    <button onclick="toggleAdminNotifications()" class="relative rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors duration-200" type="button" aria-label="{{ __('admin.header.notifications.label') }}" title="{{ __('admin.header.notifications.label') }}">
+                    <button onclick="toggleAdminNotifications()" class="relative rounded-full p-2 text-slate-300 hover:bg-slate-800 hover:text-white transition-colors duration-200" type="button" aria-label="{{ __('admin.header.notifications.label') }}" title="{{ __('admin.header.notifications.label') }}">
                         <i data-lucide="bell" class="w-5 h-5"></i>
                         @if($hasVersionUpdate)
                             <span data-update-indicator class="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
@@ -189,10 +194,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden md:flex items-center rounded-lg border border-gray-200 bg-white px-2 py-1 shadow-sm">
-                    <i data-lucide="languages" class="w-4 h-4 text-gray-400 mr-1.5"></i>
+                <div class="hidden md:flex items-center rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 shadow-sm">
+                    <i data-lucide="languages" class="w-4 h-4 text-slate-400 mr-1.5"></i>
                     <select
-                        class="admin-locale-select appearance-none bg-transparent pr-5 text-sm font-medium text-gray-700 outline-none cursor-pointer"
+                        class="admin-locale-select appearance-none bg-transparent pr-5 text-sm font-medium text-slate-200 outline-none cursor-pointer"
                         aria-label="{{ __('admin.header.language') }}"
                         onchange="if (this.value) window.location.href = this.value"
                     >
@@ -204,9 +209,9 @@
                     </select>
                 </div>
                 <div class="relative">
-                    <button onclick="toggleUserMenu()" class="flex items-center space-x-1 text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200" type="button">
-                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                            <i data-lucide="user" class="w-4 h-4 text-blue-600"></i>
+                    <button onclick="toggleUserMenu()" class="flex items-center space-x-1 text-sm text-slate-300 hover:text-white transition-colors duration-200" type="button">
+                        <div class="w-8 h-8 bg-sky-400 rounded-full flex items-center justify-center">
+                            <i data-lucide="user" class="w-4 h-4 text-slate-950"></i>
                         </div>
                         <i data-lucide="chevron-down" class="w-4 h-4"></i>
                     </button>

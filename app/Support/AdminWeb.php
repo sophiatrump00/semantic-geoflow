@@ -5,7 +5,7 @@ namespace App\Support;
 final class AdminWeb
 {
     /**
-     * 兼容 bak 语言占位符：同时支持 Laravel `:key` 与旧版 `{key}`。
+     * Support both Laravel ":key" placeholders and legacy "{key}" placeholders.
      *
      * @param  array<string, scalar|null>  $replace
      */
@@ -23,7 +23,7 @@ final class AdminWeb
 
     public static function siteName(): string
     {
-        return 'GEOFlow';
+        return 'SemanticFlow';
     }
 
     public static function basePath(): string
@@ -46,12 +46,7 @@ final class AdminWeb
     public static function supportedLocales(): array
     {
         return [
-            'zh_CN' => '简体中文',
             'en' => 'English',
-            'ja' => '日本語',
-            'es' => 'Español',
-            'ru' => 'Русский',
-            'pt_BR' => 'Português (BR)',
         ];
     }
 

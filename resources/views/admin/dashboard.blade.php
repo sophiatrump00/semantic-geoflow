@@ -322,21 +322,21 @@
             [
                 'title' => __('admin.dashboard.skill_resources.template_title'),
                 'desc' => __('admin.dashboard.skill_resources.template_desc'),
-                'href' => 'https://github.com/yaojingang/yao-geo-skills/tree/main/skills/yao-geoflow-template',
+                'href' => route('admin.site-settings.index'),
                 'icon' => 'layers-3',
                 'tone' => 'blue',
             ],
             [
                 'title' => __('admin.dashboard.skill_resources.design_title'),
                 'desc' => __('admin.dashboard.skill_resources.design_desc'),
-                'href' => 'https://github.com/yaojingang/yao-geo-skills/tree/main/skills/yao-geoflow-design',
+                'href' => route('admin.ai-prompts'),
                 'icon' => 'palette',
                 'tone' => 'violet',
             ],
             [
                 'title' => __('admin.dashboard.skill_resources.cli_title'),
                 'desc' => __('admin.dashboard.skill_resources.cli_desc'),
-                'href' => 'https://github.com/yaojingang/yao-geo-skills/tree/main/skills/yao-geoflow-cli',
+                'href' => route('admin.api-tokens.index'),
                 'icon' => 'terminal',
                 'tone' => 'slate',
             ],
@@ -344,57 +344,75 @@
     @endphp
 
     <div class="px-4 sm:px-0">
-        <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-900">{{ __('admin.dashboard.navigation.heading') }}</h1>
-                <p class="mt-1 text-sm leading-6 text-gray-600">{{ __('admin.dashboard.navigation.subtitle') }}</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-                <a href="{{ route('admin.dashboard') }}" class="inline-flex h-10 items-center rounded-lg border border-gray-300 bg-white px-4 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50">
-                    <i data-lucide="refresh-cw" class="mr-2 h-4 w-4"></i>
-                    {{ __('admin.dashboard.refresh') }}
-                </a>
-                <a href="{{ route('admin.tasks.create') }}" class="inline-flex h-10 items-center rounded-lg bg-blue-600 px-4 text-sm font-semibold text-white shadow-sm hover:bg-blue-700">
-                    <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
-                    {{ __('admin.dashboard.quick_start.task_button') }}
-                </a>
-            </div>
-        </div>
-
-        <section class="mb-8 overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-gray-200">
-            <div class="flex flex-col gap-4 border-b border-gray-100 px-6 py-5 lg:flex-row lg:items-start lg:justify-between">
+        <section class="mb-8 overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-xl shadow-slate-300/40">
+            <div class="grid gap-8 p-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)] lg:p-10">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">{{ __('admin.dashboard.quick_start.eyebrow') }}</p>
-                    <h2 class="mt-2 text-xl font-semibold text-gray-900">{{ __('admin.dashboard.quick_start.title') }}</h2>
-                    <p class="mt-2 max-w-3xl text-sm leading-6 text-gray-500">{{ __('admin.dashboard.quick_start.subtitle') }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-sky-300">{{ __('admin.dashboard.quick_start.eyebrow') }}</p>
+                    <h1 class="mt-4 max-w-3xl text-4xl font-black tracking-tight sm:text-5xl">{{ __('admin.dashboard.navigation.heading') }}</h1>
+                    <p class="mt-5 max-w-2xl text-base leading-7 text-slate-300">{{ __('admin.dashboard.navigation.subtitle') }}</p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="{{ route('admin.tasks.create') }}" class="inline-flex h-11 items-center rounded-full bg-sky-400 px-5 text-sm font-bold text-slate-950 shadow-lg shadow-sky-400/20 hover:bg-sky-300">
+                            <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
+                            {{ __('admin.dashboard.quick_start.task_button') }}
+                        </a>
+                        <a href="{{ route('admin.dashboard') }}" class="inline-flex h-11 items-center rounded-full border border-white/15 bg-white/10 px-5 text-sm font-semibold text-white hover:bg-white/15">
+                            <i data-lucide="refresh-cw" class="mr-2 h-4 w-4"></i>
+                            {{ __('admin.dashboard.refresh') }}
+                        </a>
+                    </div>
                 </div>
-                <span class="inline-flex w-fit items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-                    <span class="mr-2 h-1.5 w-1.5 rounded-full bg-current"></span>
-                    {{ __('admin.dashboard.automation.basic_ready') }}
-                </span>
+                <div class="grid gap-3 rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur">
+                    <div class="rounded-2xl bg-white p-4 text-slate-950">
+                        <div class="text-sm font-semibold text-slate-500">{{ __('admin.dashboard.automation.health_content_title') }}</div>
+                        <div class="mt-2 text-4xl font-black">{{ $totalArticles }}</div>
+                        <div class="mt-1 text-sm text-slate-500">{{ __('admin.dashboard.automation.health_content_meta', ['published' => $publishedArticles, 'drafts' => $draftArticles, 'pending' => $pendingReview]) }}</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="rounded-2xl bg-sky-400/15 p-4">
+                            <div class="text-sm text-sky-100">{{ __('admin.dashboard.automation.health_task_title') }}</div>
+                            <div class="mt-2 text-2xl font-black">{{ $runningJobs }} / {{ $totalTasks }}</div>
+                        </div>
+                        <div class="rounded-2xl bg-emerald-400/15 p-4">
+                            <div class="text-sm text-emerald-100">{{ __('admin.dashboard.automation.health_distribution_title') }}</div>
+                            <div class="mt-2 text-2xl font-black">{{ $channelsActive }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 divide-y divide-gray-100 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
-                <div class="p-6">
-                    <div class="flex items-start gap-4">
-                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">1</div>
+        <section class="mb-8 overflow-hidden rounded-[1.75rem] bg-white shadow-sm ring-1 ring-slate-200">
+            <div class="grid gap-6 p-6 lg:grid-cols-[300px_minmax(0,1fr)]">
+                <div>
+                    <span class="inline-flex w-fit items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                        <span class="mr-2 h-1.5 w-1.5 rounded-full bg-current"></span>
+                        {{ __('admin.dashboard.automation.basic_ready') }}
+                    </span>
+                    <h2 class="mt-4 text-2xl font-bold text-slate-950">{{ __('admin.dashboard.quick_start.title') }}</h2>
+                    <p class="mt-3 text-sm leading-6 text-slate-500">{{ __('admin.dashboard.quick_start.subtitle') }}</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+                    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
+                            <i data-lucide="plug-zap" class="h-5 w-5"></i>
+                        </div>
                         <div>
-                            <h3 class="text-base font-semibold text-gray-900">{{ __('admin.dashboard.quick_start.api_title') }}</h3>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">{{ __('admin.dashboard.quick_start.api_desc') }}</p>
-                            <a href="{{ route('admin.ai-models.index') }}" class="mt-4 inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700">
-                                <i data-lucide="plug-zap" class="mr-1.5 h-4 w-4"></i>
+                            <h3 class="mt-4 text-base font-semibold text-slate-950">{{ __('admin.dashboard.quick_start.api_title') }}</h3>
+                            <p class="mt-2 text-sm leading-6 text-slate-500">{{ __('admin.dashboard.quick_start.api_desc') }}</p>
+                            <a href="{{ route('admin.ai-models.index') }}" class="mt-4 inline-flex items-center rounded-full bg-slate-950 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800">
                                 {{ __('admin.dashboard.quick_start.api_button') }}
                             </a>
                         </div>
                     </div>
-                </div>
 
-                <div class="p-6">
-                    <div class="flex items-start gap-4">
-                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-sm font-semibold text-white">2</div>
+                    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
+                            <i data-lucide="database" class="h-5 w-5"></i>
+                        </div>
                         <div class="min-w-0 flex-1">
-                            <h3 class="text-base font-semibold text-gray-900">{{ __('admin.dashboard.quick_start.material_title') }}</h3>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">{{ __('admin.dashboard.quick_start.material_desc') }}</p>
+                            <h3 class="mt-4 text-base font-semibold text-slate-950">{{ __('admin.dashboard.quick_start.material_title') }}</h3>
+                            <p class="mt-2 text-sm leading-6 text-slate-500">{{ __('admin.dashboard.quick_start.material_desc') }}</p>
                             <div class="mt-4 flex flex-wrap gap-2">
                                 @foreach ($quickMaterialLinks as $link)
                                     <a href="{{ $link['href'] }}" class="inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-medium {{ $link['class'] }}">
@@ -404,16 +422,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="p-6">
-                    <div class="flex items-start gap-4">
-                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">3</div>
+                    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-violet-100 text-violet-700">
+                            <i data-lucide="workflow" class="h-5 w-5"></i>
+                        </div>
                         <div>
-                            <h3 class="text-base font-semibold text-gray-900">{{ __('admin.dashboard.quick_start.task_title') }}</h3>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">{{ __('admin.dashboard.quick_start.task_desc') }}</p>
-                            <a href="{{ route('admin.tasks.create') }}" class="mt-4 inline-flex items-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                <i data-lucide="plus" class="mr-1.5 h-4 w-4"></i>
+                            <h3 class="mt-4 text-base font-semibold text-slate-950">{{ __('admin.dashboard.quick_start.task_title') }}</h3>
+                            <p class="mt-2 text-sm leading-6 text-slate-500">{{ __('admin.dashboard.quick_start.task_desc') }}</p>
+                            <a href="{{ route('admin.tasks.create') }}" class="mt-4 inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
                                 {{ __('admin.dashboard.quick_start.task_button') }}
                             </a>
                         </div>
