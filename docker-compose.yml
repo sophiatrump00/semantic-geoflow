@@ -1,9 +1,9 @@
-name: geoflow-laravel
+name: semanticflow-laravel
 
 services:
   postgres:
     image: ${PGVECTOR_IMAGE:-pgvector/pgvector:pg16}
-    container_name: geoflow-postgres
+    container_name: semanticflow-postgres
     environment:
       POSTGRES_DB: ${DB_DATABASE:-geo_flow}
       POSTGRES_USER: ${DB_USERNAME:-geo_user}
@@ -21,20 +21,20 @@ services:
 
   redis:
     image: ${REDIS_IMAGE:-redis:7-alpine}
-    container_name: geoflow-redis
+    container_name: semanticflow-redis
     ports:
       - "127.0.0.1:${REDIS_EXPOSE_PORT:-16379}:6379"
     restart: unless-stopped
 
   init:
-    image: geoflow-app:latest
+    image: semanticflow-app:latest
     build:
       context: .
       dockerfile: docker/Dockerfile
       args:
         PHP_CLI_IMAGE: ${PHP_CLI_IMAGE:-php:8.4-cli-bookworm}
         COMPOSER_PACKAGIST_MIRROR: ${COMPOSER_PACKAGIST_MIRROR:-https://mirrors.aliyun.com/composer/}
-    container_name: geoflow-init
+    container_name: semanticflow-init
     working_dir: /var/www/html
     env_file:
       - ./.env
@@ -53,14 +53,14 @@ services:
     restart: "no"
 
   app:
-    image: geoflow-app:latest
+    image: semanticflow-app:latest
     build:
       context: .
       dockerfile: docker/Dockerfile
       args:
         PHP_CLI_IMAGE: ${PHP_CLI_IMAGE:-php:8.4-cli-bookworm}
         COMPOSER_PACKAGIST_MIRROR: ${COMPOSER_PACKAGIST_MIRROR:-https://mirrors.aliyun.com/composer/}
-    container_name: geoflow-app
+    container_name: semanticflow-app
     working_dir: /var/www/html
     env_file:
       - ./.env
@@ -75,14 +75,14 @@ services:
     restart: unless-stopped
 
   queue:
-    image: geoflow-app:latest
+    image: semanticflow-app:latest
     build:
       context: .
       dockerfile: docker/Dockerfile
       args:
         PHP_CLI_IMAGE: ${PHP_CLI_IMAGE:-php:8.4-cli-bookworm}
         COMPOSER_PACKAGIST_MIRROR: ${COMPOSER_PACKAGIST_MIRROR:-https://mirrors.aliyun.com/composer/}
-    container_name: geoflow-queue
+    container_name: semanticflow-queue
     working_dir: /var/www/html
     env_file:
       - ./.env
@@ -95,14 +95,14 @@ services:
     restart: unless-stopped
 
   scheduler:
-    image: geoflow-app:latest
+    image: semanticflow-app:latest
     build:
       context: .
       dockerfile: docker/Dockerfile
       args:
         PHP_CLI_IMAGE: ${PHP_CLI_IMAGE:-php:8.4-cli-bookworm}
         COMPOSER_PACKAGIST_MIRROR: ${COMPOSER_PACKAGIST_MIRROR:-https://mirrors.aliyun.com/composer/}
-    container_name: geoflow-scheduler
+    container_name: semanticflow-scheduler
     working_dir: /var/www/html
     env_file:
       - ./.env
@@ -115,14 +115,14 @@ services:
     restart: unless-stopped
 
   reverb:
-    image: geoflow-app:latest
+    image: semanticflow-app:latest
     build:
       context: .
       dockerfile: docker/Dockerfile
       args:
         PHP_CLI_IMAGE: ${PHP_CLI_IMAGE:-php:8.4-cli-bookworm}
         COMPOSER_PACKAGIST_MIRROR: ${COMPOSER_PACKAGIST_MIRROR:-https://mirrors.aliyun.com/composer/}
-    container_name: geoflow-reverb
+    container_name: semanticflow-reverb
     working_dir: /var/www/html
     env_file:
       - ./.env

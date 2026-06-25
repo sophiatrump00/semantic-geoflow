@@ -62,8 +62,8 @@ COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/99-opcache.ini
 COPY docker/php/opcache-dev.ini /usr/local/etc/php/conf.d/zz-opcache-dev.ini
 COPY docker/php/php-docker-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
 
-RUN cp docker/entrypoint.sh /usr/local/bin/geoflow-entrypoint \
-    && chmod +x /usr/local/bin/geoflow-entrypoint
+RUN cp docker/entrypoint.sh /usr/local/bin/semanticflow-entrypoint \
+    && chmod +x /usr/local/bin/semanticflow-entrypoint
 
-ENTRYPOINT ["/usr/local/bin/geoflow-entrypoint"]
+ENTRYPOINT ["/usr/local/bin/semanticflow-entrypoint"]
 CMD ["php", "artisan", "about"]
